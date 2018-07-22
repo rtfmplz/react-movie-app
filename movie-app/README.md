@@ -21,4 +21,9 @@ npm install
 yarn start //npm start
 ```
 
+deploy
 
+```
+yarn add gh-pages
+yarn run deploy
+```
