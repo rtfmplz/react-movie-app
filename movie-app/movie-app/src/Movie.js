@@ -1,6 +1,8 @@
 import React from 'react';
 import './Movie.css';
 import PropTypes from 'prop-types';
+import LinesEllipsis from 'react-lines-ellipsis'
+
 
 /**
  * stateless component
@@ -13,23 +15,41 @@ function Movie({title, poster, genres, synopsis}) {
   return (
     // className == class in css
     <div className = "Movie">
-      <div className = "Movie__Columns">
+      <div className = "Movie__Column">
         <MoviePoster poster={poster} alt={title} />
       </div>
-      <div className = "Movie__Columns">
+      <div className = "Movie__Column">
         <h1>{title}</h1>
         <div className = "Movie__Genres">
           {genres.map( (genre, index) => {
             return <MovieGenre genre={genre} key={index} />
           })}
         </div>
-        <p className = "Movie__Synopsis">
-          {synopsis}
-        </p>
+        <div className = "Movie__Synopsis">
+          <LinesEllipsis
+            text={synopsis}
+            maxLine='3'
+            ellipsis='...'
+            trimRight
+            basedOn='letters'/>   
+        </div>
       </div>
     </div> 
   );
 }
+
+function MoviePoster({poster, alt}) {
+  return (
+    <img src={poster} alt={alt} title={alt} className="Movie__Poster" />
+  );
+}
+
+function MovieGenre({genre}) {
+  return (
+    <span className = "Movie__Genre">{genre}</span>
+  );
+}
+
 
 /**
  * propTypes를 override 해서 props의 type을 명시 할 수 있다.
@@ -42,24 +62,13 @@ Movie.propTypes = {
   synopsis: PropTypes.string.isRequired
 }
 
-function MovieGenre({genre}) {
-  return (
-    <span className = "Movie__Genre">{genre}</span>
-  );
+MoviePoster.propTypes = {
+  poster: PropTypes.string.isRequired,
+  alt: PropTypes.string.isRequired
 }
 
 MovieGenre.propTypes = {
   genre: PropTypes.string.isRequired
-}
-
-function MoviePoster({poster}) {
-  return (
-    <img src={poster} alt="Movie Poster" />
-  );
-}
-
-MoviePoster.propTypes = {
-  poster: PropTypes.string.isRequired
 }
 
 export default Movie;

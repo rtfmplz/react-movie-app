@@ -31,7 +31,7 @@ import Movie from './Movie';
  *    componentWillUnmount(): Component가 Destroy된 후 호출된다.
  */
 
-const MOVIE_LIST = "https://yts.am/api/v2/list_movies.json?sort_by=like_count";
+const MOVIE_LIST = "https://yts.am/api/v2/list_movies.json?sort_by=download_count";
 
 class App extends Component {
 
@@ -80,10 +80,11 @@ class App extends Component {
   }
 
   render() {
+    const { movies } = this.state;
     return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : "Loading ..."}
-      </div> 
+      <div className={movies ? "App" : "App--loading"}>
+        {movies ? this._renderMovies() : "Loading"}
+      </div>
     );
   }
 }
