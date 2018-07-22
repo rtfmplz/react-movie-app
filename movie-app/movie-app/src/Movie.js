@@ -9,11 +9,24 @@ import PropTypes from 'prop-types';
  *    - just return html code
  */
 
-function Movie({title, poster}) {
+function Movie({title, poster, genres, synopsis}) {
   return (
-    <div>
-      <h1>{title}</h1>
-      < MoviePoster poster={poster}/>
+    // className == class in css
+    <div className = "Movie">
+      <div className = "Movie__Columns">
+        <MoviePoster poster={poster} alt={title} />
+      </div>
+      <div className = "Movie__Columns">
+        <h1>{title}</h1>
+        <div className = "Movie__Genres">
+          {genres.map( (genre, index) => {
+            return <MovieGenre genre={genre} key={index} />
+          })}
+        </div>
+        <p className = "Movie__Synopsis">
+          {synopsis}
+        </p>
+      </div>
     </div> 
   );
 }
@@ -24,11 +37,22 @@ function Movie({title, poster}) {
  */ 
 Movie.propTypes = {
   title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
+  genres: PropTypes.array.isRequired,
+  synopsis: PropTypes.string.isRequired
+}
+
+function MovieGenre({genre}) {
+  return (
+    <span className = "Movie__Genre">{genre}</span>
+  );
+}
+
+MovieGenre.propTypes = {
+  genre: PropTypes.string.isRequired
 }
 
 function MoviePoster({poster}) {
-
   return (
     <img src={poster} alt="Movie Poster" />
   );
