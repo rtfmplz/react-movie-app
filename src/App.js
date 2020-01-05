@@ -31,7 +31,7 @@ import Movie from './Movie';
  *    componentWillUnmount(): Component가 Destroy된 후 호출된다.
  */
 
-const MOVIE_LIST = "https://yts.am/api/v2/list_movies.json?sort_by=download_count";
+const MOVIE_LIST = "https://yts-proxy.now.sh/list_movies.json?sort_by=rating";
 
 class App extends Component {
 
