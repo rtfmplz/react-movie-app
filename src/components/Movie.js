@@ -5,15 +5,14 @@ import LinesEllipsis from 'react-lines-ellipsis'
 
 
 /**
- * stateless component
+ * stateless function component
  * 
  *    - render(), update 등 LifeCycle이 필요없는 component
- *    - just return html code
+ *    - just return JSX(html) code
  */
-
 function Movie({title, poster, genres, synopsis}) {
   return (
-    // className == class in css
+    // className == class in HTML
     <div className = "Movie">
       <div className = "Movie__Column">
         <MoviePoster poster={poster} alt={title} />
@@ -58,7 +57,7 @@ function MovieGenre({genre}) {
 Movie.propTypes = {
   title: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   synopsis: PropTypes.string.isRequired
 }
 

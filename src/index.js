@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import App from './components/App';
 
 
 /**
@@ -16,6 +15,4 @@ import registerServiceWorker from './registerServiceWorker';
 // ReactDOM 은 render 한다. App을 id 가 root 인 곳에
 // ReactDOM.render(reactElement, domContainerNode)
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
-
 
